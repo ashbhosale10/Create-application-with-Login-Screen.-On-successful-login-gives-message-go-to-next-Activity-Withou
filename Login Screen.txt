@@ -1,0 +1,101 @@
+Q1_2: Create application with login screen. on successful login, give message go to next activity (without using database)
+
+1xml
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Q1_2: Create application with login screen. on successful login, give message go to next activity (without using database)"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Email"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/passwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Password"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="submit"
+        android:text="Login"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/err"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Not a member? SignUp" />
+
+
+</LinearLayout>
+
+1java
+
+package com.example.loginscreen;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText et1, et2;
+    Button btn;
+    TextView tv1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        et1 = findViewById(R.id.email);
+        et2 = findViewById(R.id.passwd);
+        btn = findViewById(R.id.submit);
+        tv1 = findViewById(R.id.err);
+    }
+
+    public void submit(View view) {
+        String email = et1.getText().toString();
+        String password = et2.getText().toString();
+
+        if (email.equals("ashish6bhosale@gmail.com") && password.equals("ash123")) {
+            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
+            tv1.setText("Successful Login");
+        } else {
+            Toast.makeText(getApplicationContext(), "Authentication Failed", Toast.LENGTH_LONG).show();
+            String str = "Hint: \nEmail: 'ashish6bhosale@gmail.com' \nPassword: 'ash123'";
+            tv1.setText(str);
+        }
+    }
+}
+
